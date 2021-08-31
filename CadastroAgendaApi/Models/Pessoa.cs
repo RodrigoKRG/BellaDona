@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CadastroAgendaApi.Models
 {
@@ -17,6 +14,8 @@ namespace CadastroAgendaApi.Models
         [Required]
         [StringLength(18)]
         public string CPFCNPJ { get; set; }
+
+        public bool Funcionario { get; set; }
 
         public DateTime? DataNascimento { get; set; }
 

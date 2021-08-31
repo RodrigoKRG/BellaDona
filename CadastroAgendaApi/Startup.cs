@@ -29,6 +29,7 @@ namespace CadastroAgendaApi
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IPessoaService, PessoasService>();
+            services.AddScoped<IAgendamentoService, AgendamentosService>();
 
             services.AddSwaggerGen(c =>
             {

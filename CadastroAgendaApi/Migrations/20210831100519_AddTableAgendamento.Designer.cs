@@ -4,14 +4,16 @@ using CadastroAgendaApi.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CadastroAgendaApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210831100519_AddTableAgendamento")]
+    partial class AddTableAgendamento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,16 +27,13 @@ namespace CadastroAgendaApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("AtendimentoConcluido")
-                        .HasColumnType("bit");
-
                     b.Property<Guid>("ClienteId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("FuncionarioId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("Horario")
+                    b.Property<DateTime?>("Horario")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -91,9 +90,6 @@ namespace CadastroAgendaApi.Migrations
                     b.Property<string>("Estado")
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
-
-                    b.Property<bool>("Funcionario")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Nome")
                         .IsRequired()

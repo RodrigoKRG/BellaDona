@@ -124,7 +124,7 @@ namespace CadastroAgendaApi.Controllers
                 if (Pessoa != null)
                 {
                     await _pessoaService.DeletarPessoa(Pessoa);
-                    return Ok($"Pessoa com id = {id} foi excluido com sucesso");
+                    return NoContent();
                 }
                 else
                 {
