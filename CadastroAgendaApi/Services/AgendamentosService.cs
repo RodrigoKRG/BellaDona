@@ -21,7 +21,10 @@ namespace CadastroAgendaApi.Services
         {
             try
             {
-                return await _context.Agendamentos.Where(x => !x.Cliente.Funcionario && !x.AtendimentoConcluido).ToListAsync();
+                return await _context.Agendamentos
+                    .Include(c => c.Cliente)
+                    .Include(f => f.Funcionario)
+                    .Where(x => !x.Cliente.Funcionario && !x.AtendimentoConcluido).ToListAsync();
             }
             catch
             {
@@ -50,9 +53,10 @@ namespace CadastroAgendaApi.Services
                 IEnumerable<Agendamento> agendamentos;
                 if (!string.IsNullOrWhiteSpace(nome))
                 {
-                    agendamentos = await _context.Agendamentos.Where(n => n.Cliente.Nome.Contains(nome) 
-                                                                          && !n.Cliente.Funcionario
-                                                                          && n.AtendimentoConcluido).ToListAsync();
+                    agendamentos = await _context.Agendamentos
+                        .Include(c => c.Cliente)
+                        .Include(f => f.Funcionario)
+                        .Where(n => n.Cliente.Nome.Contains(nome) && !n.Cliente.Funcionario && !n.AtendimentoConcluido).ToListAsync();
                 }
                 else
                 {
