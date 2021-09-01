@@ -14,10 +14,12 @@ namespace CadastroAgendaApi.Controllers
     public class AgendamentosController : ControllerBase
     {
         private IAgendamentoService _agendamentoService;
+        private IPessoaService _pessoaService;
 
-        public AgendamentosController(IAgendamentoService agendamentoService)
+        public AgendamentosController(IAgendamentoService agendamentoService, IPessoaService pessoaService)
         {
             _agendamentoService = agendamentoService;
+            _pessoaService = pessoaService;
         }
 
         [HttpGet]
@@ -56,5 +58,47 @@ namespace CadastroAgendaApi.Controllers
                 //    "Erro ao obter Pessoas");
             }
         }
+
+        [HttpGet("{id:Guid}", Name = "GetAgentamento")]
+        public async Task<ActionResult<Pessoa>> GetAgentamento(Guid id)
+        {
+            try
+            {
+                var agendamento = await _agendamentoService.ObterAgendamento(id);
+
+                if (agendamento == null)
+                    return NotFound($"Não existe Agendamento com o id = {id}");
+
+                return Ok(agendamento);
+            }
+            catch
+            {
+                return BadRequest("Request inválido");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Create(Agendamento agendamento)
+        {
+            try
+            {
+                var clientes = await _pessoaService.ObterClientes();
+                if (clientes.FirstOrDefault(x => x.Id == agendamento.ClienteId) == null)
+                    return BadRequest("Cliente não cadastrado.");
+
+                var funcionarios = await _pessoaService.ObterFuncionarios();
+                if (agendamento.FuncionarioId.HasValue && funcionarios.FirstOrDefault(x => x.Id == agendamento.FuncionarioId) == null)
+                    return BadRequest("funcionario não cadastrado.");
+
+                agendamento.Id = new Guid();
+                await _agendamentoService.CriarAgendamento(agendamento);
+                return CreatedAtRoute(nameof(GetAgentamento), new { id = agendamento.Id }, agendamento);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Request inválido");
+            }
+        }
+
     }
 }

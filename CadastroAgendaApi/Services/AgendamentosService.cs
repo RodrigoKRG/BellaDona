@@ -65,19 +65,43 @@ namespace CadastroAgendaApi.Services
             }
         }
 
-        public Task CriarAgendamento(Agendamento pessoa)
+        public async Task CriarAgendamento(Agendamento agendamento)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Agendamentos.Add(agendamento);
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                throw;
+            }
         }
 
-        public Task AtualizarAgendamento(Agendamento pessoa)
+        public async Task AtualizarAgendamento(Agendamento agendamento)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Entry(agendamento).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                throw;
+            }
         }
 
-        public Task DeletarAgendamento(Agendamento pessoa)
+        public async Task DeletarAgendamento(Agendamento agendamento)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Agendamentos.Remove(agendamento);
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

@@ -18,11 +18,35 @@ namespace CadastroAgendaApi.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<Pessoa>> ObterPessoa()
+        public async Task<IEnumerable<Pessoa>> ObterPessoas()
         {
             try
             {
                 return await _context.Pessoas.ToListAsync();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<Pessoa>> ObterClientes()
+        {
+            try
+            {
+                return await _context.Pessoas.Where(x => !x.Funcionario).ToListAsync();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<Pessoa>> ObterFuncionarios()
+        {
+            try
+            {
+                return await _context.Pessoas.Where(x => x.Funcionario).ToListAsync();
             }
             catch
             {
@@ -52,7 +76,7 @@ namespace CadastroAgendaApi.Services
                     pessoas = await _context.Pessoas.Where(n => n.Nome.Contains(nome)).ToListAsync();
                 } else
                 {
-                    pessoas = await ObterPessoa();
+                    pessoas = await ObterPessoas();
                 }
                     
                 return pessoas;

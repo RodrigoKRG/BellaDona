@@ -25,7 +25,7 @@ namespace CadastroAgendaApi.Controllers
         {
             try
             {
-                var pessoas = await _pessoaService.ObterPessoa();
+                var pessoas = await _pessoaService.ObterPessoas();
                 return Ok(pessoas);
             }
             catch (Exception)

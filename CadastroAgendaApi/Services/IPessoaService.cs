@@ -8,7 +8,9 @@ namespace CadastroAgendaApi.Services
 {
     public interface IPessoaService
     {
-        Task<IEnumerable<Pessoa>> ObterPessoa();
+        Task<IEnumerable<Pessoa>> ObterPessoas();
+        Task<IEnumerable<Pessoa>> ObterClientes();
+        Task<IEnumerable<Pessoa>> ObterFuncionarios();
         Task<Pessoa> ObterPessoa(Guid id);
         Task<IEnumerable<Pessoa>> ObterPessoaPorNome(string nome);
         Task CriarPessoa(Pessoa pessoa);
