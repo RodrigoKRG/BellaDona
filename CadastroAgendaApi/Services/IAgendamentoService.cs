@@ -10,7 +10,7 @@ namespace CadastroAgendaApi.Services
     {
         Task<IEnumerable<Agendamento>> ObterAgendamentos();
         Task<Agendamento> ObterAgendamento(Guid id);
-        Task<IEnumerable<Agendamento>> ObterAgendamentoPorCliente(string nome);
+        Task<IEnumerable<Agendamento>> ObterAgendamentoPorCliente(string nome, bool atendimentoConcluido);
         Task CriarAgendamento(Agendamento pessoa);
         Task AtualizarAgendamento(Agendamento pessoa);
         Task DeletarAgendamento(Agendamento pessoa);

@@ -43,14 +43,16 @@ namespace CadastroAgendaApi.Services
 
         }
 
-        public async Task<IEnumerable<Agendamento>> ObterAgendamentoPorCliente(string nome)
+        public async Task<IEnumerable<Agendamento>> ObterAgendamentoPorCliente(string nome, bool atendimentoConcluido)
         {
             try
             {
                 IEnumerable<Agendamento> agendamentos;
                 if (!string.IsNullOrWhiteSpace(nome))
                 {
-                    agendamentos = await _context.Agendamentos.Where(n => n.Cliente.Nome.Contains(nome) && !n.Cliente.Funcionario).ToListAsync();
+                    agendamentos = await _context.Agendamentos.Where(n => n.Cliente.Nome.Contains(nome) 
+                                                                          && !n.Cliente.Funcionario
+                                                                          && n.AtendimentoConcluido).ToListAsync();
                 }
                 else
                 {

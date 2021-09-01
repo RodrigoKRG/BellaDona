@@ -39,11 +39,11 @@ namespace CadastroAgendaApi.Controllers
         }
 
         [HttpGet("AgendamentosPorCliente")]
-        public async Task<ActionResult<IAsyncEnumerable<Agendamento>>> GetAgendamentosByCliente([FromQuery] string nome)
+        public async Task<ActionResult<IAsyncEnumerable<Agendamento>>> GetAgendamentosByCliente([FromQuery] string nome, bool atendimentoConcluido)
         {
             try
             {
-                var agendamentos = await _agendamentoService.ObterAgendamentoPorCliente(nome);
+                var agendamentos = await _agendamentoService.ObterAgendamentoPorCliente(nome, atendimentoConcluido);
 
                 if (agendamentos == null)
                     return NotFound($"Não existem Agentamentos com o critétio {nome}");
@@ -100,5 +100,47 @@ namespace CadastroAgendaApi.Controllers
             }
         }
 
+        [HttpPut("{id:Guid}")]
+        public async Task<ActionResult> Edit(Guid id, [FromBody] Agendamento agendamento)
+        {
+            try
+            {
+                if (agendamento.Id == id)
+                {
+                    await _agendamentoService.AtualizarAgendamento(agendamento);
+                    return Ok($"O agendamento de id = {id} foi atualizado com sucesso");
+                }
+                else
+                {
+                    return BadRequest("Dados inconsistentes");
+                }
+            }
+            catch
+            {
+                return BadRequest("Request inválido");
+            }
+        }
+
+        [HttpDelete("{id:Guid}")]
+        public async Task<ActionResult> Delete(Guid id)
+        {
+            try
+            {
+                var agendamento = await _agendamentoService.ObterAgendamento(id);
+                if (agendamento != null)
+                {
+                    await _agendamentoService.DeletarAgendamento(agendamento);
+                    return NoContent();
+                }
+                else
+                {
+                    return NotFound($"Agendamento com id = {id} não encontrado");
+                }
+            }
+            catch
+            {
+                return BadRequest("Request inválido");
+            }
+        }
     }
 }
