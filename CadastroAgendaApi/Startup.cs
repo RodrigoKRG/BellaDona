@@ -47,6 +47,14 @@ namespace CadastroAgendaApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CadastroAgendaApi v1"));
             }
 
+            app.UseCors(options =>
+            {
+                options.WithOrigins("https://localhost:3000");
+                options.AllowAnyMethod();
+                options.AllowAnyHeader();
+                options.AllowAnyOrigin();
+            });
+
             app.UseHttpsRedirection();
 
             app.UseRouting();

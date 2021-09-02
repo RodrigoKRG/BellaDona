@@ -19,6 +19,14 @@ namespace CadastroAgendaApi.Models
 
         public DateTime? DataNascimento { get; set; }
 
+        public string DataNascimentoFormat
+        {
+            get
+            {
+                return DataNascimento.HasValue ? DataNascimento.Value.ToString("dd/MM/yyyy") : string.Empty;
+            }
+        }
+
         [StringLength(8)]
         public string CEP { get; set; }
 
@@ -47,6 +55,14 @@ namespace CadastroAgendaApi.Models
         [Phone]
         [StringLength(15)]
         public string Celular { get; set; }
+
+        public string CelularFormat
+        {
+            get
+            {
+                return long.Parse(Celular).ToString(@"(00) 00000-0000");
+            }
+        }
 
         [EmailAddress]
         [StringLength(100)]
