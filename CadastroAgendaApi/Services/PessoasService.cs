@@ -22,7 +22,8 @@ namespace CadastroAgendaApi.Services
         {
             try
             {
-                return await _context.Pessoas.ToListAsync();
+                var pessoas = await _context.Pessoas.ToListAsync();
+                return pessoas.OrderBy(x => x.Nome);
             }
             catch
             {

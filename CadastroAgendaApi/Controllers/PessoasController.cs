@@ -14,10 +14,13 @@ namespace CadastroAgendaApi.Controllers
     public class PessoasController : ControllerBase
     {
         private IPessoaService _pessoaService;
+        private IAgendamentoService _agendamentoService;
 
-        public PessoasController(IPessoaService pessoaService)
+
+        public PessoasController(IPessoaService pessoaService, IAgendamentoService agendamentoService)
         {
             _pessoaService = pessoaService;
+            _agendamentoService = agendamentoService;
         }
 
         [HttpGet]
@@ -79,9 +82,9 @@ namespace CadastroAgendaApi.Controllers
         public async Task<ActionResult> Create(Pessoa pessoa)
         {
             try
-            {          
-                
-                if(_pessoaService.CpfJaCadastrado(pessoa.CPFCNPJ))
+            {
+
+                if (_pessoaService.CpfJaCadastrado(pessoa.CPFCNPJ))
                     return BadRequest("Ops, já existe um cadastro com o CPF informado.");
 
                 pessoa.Id = new Guid();
@@ -94,7 +97,7 @@ namespace CadastroAgendaApi.Controllers
             }
         }
 
-        [HttpPut("{id:int}")]
+        [HttpPut("{id:Guid}")]
         public async Task<ActionResult> Edit(Guid id, [FromBody] Pessoa pessoa)
         {
             try
@@ -121,17 +124,25 @@ namespace CadastroAgendaApi.Controllers
             try
             {
                 var Pessoa = await _pessoaService.ObterPessoa(id);
+                var agendamento = await _agendamentoService.ObterAgendamentoPorFuncionario(id, false);
                 if (Pessoa != null)
                 {
-                    await _pessoaService.DeletarPessoa(Pessoa);
-                    return NoContent();
+                    if (!agendamento.Any())
+                    {
+                        await _pessoaService.DeletarPessoa(Pessoa);
+                        return NoContent();
+                    }
+                    else
+                    {
+                        return BadRequest($"Funcionario possui agendamento em aberto.");
+                    }
                 }
                 else
                 {
                     return NotFound($"Pessoa com id = {id} não encontrado");
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 return BadRequest("Request inválido");
             }

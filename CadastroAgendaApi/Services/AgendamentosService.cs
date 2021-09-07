@@ -71,6 +71,32 @@ namespace CadastroAgendaApi.Services
             }
         }
 
+        public async Task<IEnumerable<Agendamento>> ObterAgendamentoPorFuncionario(Guid funcionarioId, bool atendimentoConcluido)
+        {
+            try
+            {
+                IEnumerable<Agendamento> agendamentos;
+                
+                if (funcionarioId != null)
+                {
+                    agendamentos = await _context.Agendamentos
+                        .Include(c => c.Cliente)
+                        .Include(f => f.Funcionario)
+                        .Where(n => n.Funcionario.Id == funcionarioId && n.Funcionario.Funcionario && !n.AtendimentoConcluido).ToListAsync();
+                }
+                else
+                {
+                    agendamentos = await ObterAgendamentos();
+                }
+
+                return agendamentos;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public async Task CriarAgendamento(Agendamento agendamento)
         {
             try
