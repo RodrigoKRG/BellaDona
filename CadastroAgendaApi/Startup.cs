@@ -30,6 +30,7 @@ namespace CadastroAgendaApi
 
             services.AddScoped<IPessoaService, PessoasService>();
             services.AddScoped<IAgendamentoService, AgendamentosService>();
+            services.AddScoped<IServicoService, ServicosService>();
 
             services.AddSwaggerGen(c =>
             {

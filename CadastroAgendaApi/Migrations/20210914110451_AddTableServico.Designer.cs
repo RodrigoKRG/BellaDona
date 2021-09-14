@@ -4,14 +4,16 @@ using CadastroAgendaApi.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CadastroAgendaApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210914110451_AddTableServico")]
+    partial class AddTableServico
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,16 +39,11 @@ namespace CadastroAgendaApi.Migrations
                     b.Property<DateTime>("Horario")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("ServicoId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
 
                     b.HasIndex("FuncionarioId");
-
-                    b.HasIndex("ServicoId");
 
                     b.ToTable("Agendamentos");
                 });
@@ -152,15 +149,9 @@ namespace CadastroAgendaApi.Migrations
                         .WithMany()
                         .HasForeignKey("FuncionarioId");
 
-                    b.HasOne("CadastroAgendaApi.Models.Servico", "Servico")
-                        .WithMany()
-                        .HasForeignKey("ServicoId");
-
                     b.Navigation("Cliente");
 
                     b.Navigation("Funcionario");
-
-                    b.Navigation("Servico");
                 });
 #pragma warning restore 612, 618
         }
