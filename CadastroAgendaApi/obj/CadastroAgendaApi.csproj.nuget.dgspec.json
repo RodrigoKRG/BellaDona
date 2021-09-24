@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rodrigo.rebes\\Documents\\me\\BellaDona\\CadastroAgendaApi\\CadastroAgendaApi\\CadastroAgendaApi.csproj": {}
+    "C:\\Projetos\\BellaDonna\\BellaDona\\CadastroAgendaApi\\CadastroAgendaApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rodrigo.rebes\\Documents\\me\\BellaDona\\CadastroAgendaApi\\CadastroAgendaApi\\CadastroAgendaApi.csproj": {
+    "C:\\Projetos\\BellaDonna\\BellaDona\\CadastroAgendaApi\\CadastroAgendaApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rodrigo.rebes\\Documents\\me\\BellaDona\\CadastroAgendaApi\\CadastroAgendaApi\\CadastroAgendaApi.csproj",
+        "projectUniqueName": "C:\\Projetos\\BellaDonna\\BellaDona\\CadastroAgendaApi\\CadastroAgendaApi.csproj",
         "projectName": "CadastroAgendaApi",
-        "projectPath": "C:\\Users\\rodrigo.rebes\\Documents\\me\\BellaDona\\CadastroAgendaApi\\CadastroAgendaApi\\CadastroAgendaApi.csproj",
-        "packagesPath": "C:\\Users\\rodrigo.rebes\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rodrigo.rebes\\Documents\\me\\BellaDona\\CadastroAgendaApi\\CadastroAgendaApi\\obj\\",
+        "projectPath": "C:\\Projetos\\BellaDonna\\BellaDona\\CadastroAgendaApi\\CadastroAgendaApi.csproj",
+        "packagesPath": "C:\\Users\\rodri\\.nuget\\packages\\",
+        "outputPath": "C:\\Projetos\\BellaDonna\\BellaDona\\CadastroAgendaApi\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\rodrigo.rebes\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rodri\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -76,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
