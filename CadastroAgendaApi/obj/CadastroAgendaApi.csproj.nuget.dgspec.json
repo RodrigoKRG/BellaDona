@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projetos\\BellaDonna\\BellaDona\\CadastroAgendaApi\\CadastroAgendaApi.csproj": {}
+    "C:\\Users\\rodrigo.goncalves\\Documents\\me\\Projetos\\BellaDona\\CadastroAgendaApi\\CadastroAgendaApi.csproj": {}
   },
   "projects": {
-    "C:\\Projetos\\BellaDonna\\BellaDona\\CadastroAgendaApi\\CadastroAgendaApi.csproj": {
+    "C:\\Users\\rodrigo.goncalves\\Documents\\me\\Projetos\\BellaDona\\CadastroAgendaApi\\CadastroAgendaApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projetos\\BellaDonna\\BellaDona\\CadastroAgendaApi\\CadastroAgendaApi.csproj",
+        "projectUniqueName": "C:\\Users\\rodrigo.goncalves\\Documents\\me\\Projetos\\BellaDona\\CadastroAgendaApi\\CadastroAgendaApi.csproj",
         "projectName": "CadastroAgendaApi",
-        "projectPath": "C:\\Projetos\\BellaDonna\\BellaDona\\CadastroAgendaApi\\CadastroAgendaApi.csproj",
-        "packagesPath": "C:\\Users\\rodri\\.nuget\\packages\\",
-        "outputPath": "C:\\Projetos\\BellaDonna\\BellaDona\\CadastroAgendaApi\\obj\\",
+        "projectPath": "C:\\Users\\rodrigo.goncalves\\Documents\\me\\Projetos\\BellaDona\\CadastroAgendaApi\\CadastroAgendaApi.csproj",
+        "packagesPath": "C:\\Users\\rodrigo.goncalves\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rodrigo.goncalves\\Documents\\me\\Projetos\\BellaDona\\CadastroAgendaApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\rodri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rodrigo.goncalves\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +40,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.9, )"
@@ -73,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
