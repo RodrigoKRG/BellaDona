@@ -1,5 +1,7 @@
 ﻿using CadastroAgendaApi.Models;
 using CadastroAgendaApi.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +13,7 @@ namespace CadastroAgendaApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class PessoasController : ControllerBase
     {
         private IPessoaService _pessoaService;
